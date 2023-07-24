@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+  nestapp:
+    container_name: nestapp
+    image: naceurtest/nestapp:1.0.0
+    build: .
+    ports:
+      - 5000:5000
+    environment:
+      - MYSQL_DB_TYPE=mysql
+      - MYSQL_DB_HOST=localhost
+      - MYSQL_DB_PORT=3306
+      - MYSQL_DB_USERNAME=root
+      - MYSQL_DB_PASSWORD=
+      - MYSQL_DB_NAME=harry_potter_db
+
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      - MYSQL_DATABASE=harry_potter_db
+      - MYSQL_ALLOW_EMPTY_PASSWORD="true"
+    ports:
+      - '3306:3306'
+    volumes:
+      - db:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+volumes:
+  db:
+    driver: local

@@ -1,8 +1,8 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { CreateSpellDto } from "../Spells/dto/create-spell.dto";
-import { UpdateSpellDto } from "../Spells/dto/update-spell.dto";
+import { CreateSpellDto } from "./dto/create-spell.dto";
+import { UpdateSpellDto } from "./dto/update-spell.dto";
 import { Spells } from "./spell.entity";
 import { ISpellService } from "./spell";
 
@@ -10,7 +10,7 @@ import { ISpellService } from "./spell";
 export class SpellsService implements ISpellService {
   constructor(@InjectRepository(Spells) private spellsRepository: Repository<Spells>) { }
 
-  create(createSpellDto: CreateSpellDto): Promise<Spells> {
+  create(createSpellDto: CreateSpellDto): Promise<any> {
     const newSpell = this.spellsRepository.create(createSpellDto);
     return this.spellsRepository.save(newSpell);
   }
