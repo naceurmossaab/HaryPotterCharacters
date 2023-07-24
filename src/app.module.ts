@@ -1,10 +1,14 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CaractersModule } from './caracters/caracters.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({envFilePath: '.env', isGlobal: true}),
+    CaractersModule,
+    AppRoutingModule,
+    ConfigModule.forRoot({ envFilePath: '.env', isGlobal: true }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.MYSQL_DB_HOST,
@@ -19,4 +23,4 @@ import { TypeOrmModule } from '@nestjs/typeorm';
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }
