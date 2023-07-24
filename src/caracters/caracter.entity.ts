@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { Spells } from '../spells/spell.entity';
 
 @Entity()
 export class Caracters {
@@ -59,6 +60,9 @@ export class Caracters {
 
   @Column({ type: 'simple-array' })
   alternate_actors: string[];
+
+  @OneToMany(() => Spells, (spells) => spells.caracter, {cascade: ['remove']})
+  spells: Spells[];
 
   @Column()
   alive: boolean;

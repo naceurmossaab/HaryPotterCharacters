@@ -3,10 +3,12 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CaractersModule } from './caracters/caracters.module';
 import { AppRoutingModule } from './app-routing.module';
+import { SpellsModule } from './spells/spells.module';
 
 @Module({
   imports: [
     CaractersModule,
+    SpellsModule,
     AppRoutingModule,
     ConfigModule.forRoot({ envFilePath: '.env', isGlobal: true }),
     TypeOrmModule.forRoot({
