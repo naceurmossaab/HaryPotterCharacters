@@ -1,14 +1,14 @@
 import { Body, Controller, HttpException, Inject, Get, Post, Patch, Delete, UseFilters, HttpStatus, Param, ParseIntPipe } from "@nestjs/common";
-import { Routes, Services } from "../utils/constants";
+import { Path, Services } from "../utils/constants";
 import { ApiTags } from "@nestjs/swagger";
 import { ICaracterService } from "./caracter";
 import { CreateCaracterDto } from "./dto/create-caracter.dto";
 import { HttpExceptionFilter } from "../utils/http-exception.filter";
 import { UpdateCaracterDto } from "./dto/update-caracter.dto";
 
-@ApiTags(Routes.CARACTERS)
+@ApiTags(Path.CARACTERS)
 @UseFilters(new HttpExceptionFilter())
-@Controller(Routes.CARACTERS)
+@Controller()
 export class CaracterController {
   constructor(@Inject(Services.CARACTERS) private readonly caracterService: ICaracterService) { }
 

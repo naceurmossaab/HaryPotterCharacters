@@ -1,14 +1,14 @@
 import { Body, Controller, HttpException, Inject, Get, Post, Patch, Delete, UseFilters, HttpStatus, Param, ParseIntPipe } from "@nestjs/common";
-import { Routes, Services } from "../utils/constants";
+import { Path, Services } from "../utils/constants";
 import { ApiTags } from "@nestjs/swagger";
 import { HttpExceptionFilter } from "../utils/http-exception.filter";
 import { CreateSpellDto } from "./dto/create-spell.dto";
 import { UpdateSpellDto } from "./dto/update-spell.dto";
 import { ISpellService } from "./spell";
 
-@ApiTags(Routes.SPELLS)
+@ApiTags(Path.SPELLS)
 @UseFilters(new HttpExceptionFilter())
-@Controller(Routes.SPELLS)
+@Controller()
 export class SpellController {
   constructor(@Inject(Services.SPELLS) private readonly spellService: ISpellService) { }
 

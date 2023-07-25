@@ -1,11 +1,9 @@
-export enum Routes {
+export enum Path {
   CARACTERS = "caracters",
-  WAND = "wand",
   SPELLS = "spells"
 }
 
 export enum Services {
   CARACTERS = "caracters",
-  WAND = "wand",
   SPELLS = "spells"
 } 
